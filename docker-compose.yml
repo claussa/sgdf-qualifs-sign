@@ -1,0 +1,19 @@
+services:
+  qualif-sign:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8501
+    networks:
+      - nginx-proxy
+    environment:
+      - LETSENCRYPT_HOST=sgdf-qualifs.kyr.pw
+      - VIRTUAL_HOST=sgdf-qualifs.kyr.pw
+      - LETSENCRYPT_EMAIL=arnaud.clauss78@gmail.com
+      - VIRTUAL_PORT=8501
+
+networks:
+  nginx-proxy:
+    external: true
